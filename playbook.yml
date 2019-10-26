@@ -1,8 +1,10 @@
 ---
 - hosts: all
+  gather_facts: no
   vars:
     user: feycot
     php_version: '7.3'
+    distr_name: bionic
   become: yes
   tasks:
     - name: Update repositories cache and install prerequisites
