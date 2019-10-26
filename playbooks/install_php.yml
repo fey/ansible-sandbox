@@ -1,0 +1,37 @@
+- name: Add PHP rep
+  apt_repository:
+    repo: ppa:ondrej/php
+    state: present
+- name: Install PHP
+  apt:
+    name: [
+      'php{{ php_version }}',
+      'php{{ php_version }}-cli',
+      'php{{ php_version }}-common',
+      'php{{ php_version }}-curl',
+      'php{{ php_version }}-gd',
+      'php{{ php_version }}-json',
+      'php{{ php_version }}-mbstring',
+      'php{{ php_version }}-intl',
+      'php{{ php_version }}-mysql',
+      'php{{ php_version }}-xml',
+      'php{{ php_version }}-zip',
+      'php{{ php_version }}-xdebug',
+      'php{{ php_version }}-pgsql',
+      'php{{ php_version }}-mysql',
+      'php{{ php_version }}-xdebug',
+      'php{{ php_version }}-gmp',
+      'php{{ php_version }}-bcmath',
+      'composer'
+    ]
+    state: present
+    update_cache: yes
+- name: add PHP config
+  template:
+    src: templates/99-local.ini.j2
+    dest: /etc/php/{{ php_version }}/cli/conf.d/99-local.ini
+    mode: 777
+- name: set php version
+  alternatives:
+    name: php
+    path: /usr/bin/php{{ php_version }}
