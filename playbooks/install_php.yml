@@ -19,7 +19,6 @@
       'php{{ php_version }}-xdebug',
       'php{{ php_version }}-pgsql',
       'php{{ php_version }}-mysql',
-      'php{{ php_version }}-xdebug',
       'php{{ php_version }}-gmp',
       'php{{ php_version }}-bcmath',
       'composer'
